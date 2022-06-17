@@ -32,16 +32,18 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnCheckConn.setOnClickListener {
             binding.tvWiFiStatus.text = wifiReceiver.wifiStatus
-            binding.tvMobileDataStatus.text = "Mobile Data"
+            binding.tvMobileDataStatus.text = mobileDataReceiver.mobileDataStatus
         }
     }
 
     override fun onResume() {
         super.onResume()
-         activity?.registerReceiver(wifiReceiver, IntentFilter(WifiManager.WIFI_STATE_CHANGED_ACTION))
+         activity?.
+         registerReceiver(wifiReceiver, IntentFilter(WifiManager.WIFI_STATE_CHANGED_ACTION))
 
         //TODO intent/action to listen changes in mobile data state
-        //activity?.registerReceiver(mobileDataReceiver, IntentFilter(Intent.ACTION_DOCK_EVENT ))
+        activity?.
+        registerReceiver(mobileDataReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION ))
     }
 
     override fun onStop() {
